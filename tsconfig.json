@@ -1,6 +1,33 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "paths": {
+      "~/assets": ["./src/assets"],
+      "~/assets/*": ["./src/assets/*"],
+      "~/components": ["./src/common/components"],
+      "~/components/*": ["./src/common/components/*"],
+      "~/constants": ["./src/common/constants"],
+      "~/constants/*": ["./src/common/constants/*"],
+      "~/hooks": ["./src/common/hooks"],
+      "~/hooks/*": ["./src/common/hooks/*"],
+      "~/navigation": ["./src/navigation"],
+      "~/navigation/*": ["./src/navigation/*"],
+      "~/screens": ["./src/screens"],
+      "~/screens/*": ["./src/screens/*"],
+      "~/themes": ["./src/common/themes"],
+      "~/themes/*": ["./src/common/themes/*"],
+      "~/types": ["./src/common/types"],
+      "~/types/*": ["./src/common/types/*"],
+      "~/utils": ["./src/common/utils"],
+      "~/utils/*": ["./src/common/utils/*"],
+      "*": [
+        "./node_modules/*",
+        "./node_modules/@types/*",
+      ]
+    },
+    "baseUrl": ".",
+    "module": "commonjs",
+    "moduleResolution": "node"
   }
 }
