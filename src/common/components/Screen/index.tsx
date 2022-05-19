@@ -64,6 +64,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
         });
       } else {
         navigation.setOptions({
+          headerTitle: header.headerTitle || "",
           headerLeft: ({ canGoBack, onPress }: IAnyType) =>
             canGoBack && (
               <BackButton
@@ -82,9 +83,10 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
       if (mode === "scroll") {
         return (
           <Scroll
-            {...rest}
             ref={ref}
             paddingBottom={rest.paddingBottom || insets.bottom}
+            backgroundColor="white"
+            {...rest}
           >
             {children}
           </Scroll>
@@ -93,7 +95,6 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
       if (mode === "keyboard-aware") {
         return (
           <KeyboardAwareScroll
-            {...rest}
             ref={ref}
             keyboardOpeningTime={0}
             enableOnAndroid={enableOnAndroid}
@@ -101,13 +102,20 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
             extraScrollHeight={extraScrollHeight}
             keyboardShouldPersistTaps={keyboardShouldPersistTaps}
             paddingBottom={rest.paddingBottom || insets.bottom}
+            backgroundColor="white"
+            {...rest}
           >
             {children}
           </KeyboardAwareScroll>
         );
       }
       return (
-        <ViewContainer ref={ref as IAnyType} pb={insets.bottom + 15} {...rest}>
+        <ViewContainer
+          ref={ref as IAnyType}
+          pb={insets.bottom + 15}
+          backgroundColor="white"
+          {...rest}
+        >
           {children}
         </ViewContainer>
       );

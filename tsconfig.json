@@ -3,6 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
+      "~/apollo": ["./src/apollo"],
+      "~/apollo/*": ["./src/apollo/*"],
       "~/assets": ["./src/assets"],
       "~/assets/*": ["./src/assets/*"],
       "~/components": ["./src/common/components"],

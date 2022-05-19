@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           root: ["./src"],
           alias: {
+            "~/apollo": "./src/apollo",
             "~/assets": "./src/assets",
             "~/components": "./src/common/components",
             "~/constants": "./src/common/constants",
@@ -18,6 +19,17 @@ module.exports = function (api) {
             "~/types": "./src/common/types",
             "~/utils": "./src/common/utils",
           },
+        },
+      ],
+      [
+        "module:react-native-dotenv",
+        {
+          moduleName: "~/env",
+          path: ".env",
+          blacklist: null,
+          whitelist: null,
+          safe: false,
+          allowUndefined: true,
         },
       ],
     ],
