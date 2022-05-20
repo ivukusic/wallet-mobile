@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   Wrapper,
@@ -7,17 +7,15 @@ import {
   Label,
   LoadingPlaceholder,
   Loading,
-} from "./styles";
-import { Props } from "./types";
+} from './styles';
+import { Props } from './types';
 
 export const Button: React.FC<Props> = ({
   label,
   loading = false,
-  type = "default",
+  type = 'default',
   onPress,
   disabled = false,
-  icon,
-  renderIcon,
   containerProps = {},
   labelProps = {},
   ...rest
@@ -30,10 +28,8 @@ export const Button: React.FC<Props> = ({
     {...containerProps}
     {...rest}
   >
-    {type === "primary" && !containerProps.backgroundColor && (
-      <Background disabled={!!disabled} />
-    )}
-    {type === "delete" && !containerProps.backgroundColor && (
+    {type === 'primary' && !containerProps.backgroundColor && <Background disabled={!!disabled} />}
+    {type === 'delete' && !containerProps.backgroundColor && (
       <BackgroundDelete disabled={!!disabled} />
     )}
 
@@ -41,8 +37,6 @@ export const Button: React.FC<Props> = ({
     <Label customType={type} {...(labelProps || {})}>
       {label}
     </Label>
-    <LoadingPlaceholder>
-      {!!loading && <Loading type={type} />}
-    </LoadingPlaceholder>
+    <LoadingPlaceholder>{!!loading && <Loading type={type} />}</LoadingPlaceholder>
   </Wrapper>
 );

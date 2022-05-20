@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
-import { TextProps } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { PropsWithChildren } from 'react';
+import { TextProps } from 'react-native';
 
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {
   SpaceProps,
   LayoutProps,
@@ -11,19 +11,9 @@ import {
   TextAlignProps,
   FlexboxProps,
   SizeProps,
-} from "styled-system";
+} from 'styled-system';
 
-export type TypeScale =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h5"
-  | "h5"
-  | "h6"
-  | "body"
-  | "caption";
+export type TypeScale = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h5' | 'h5' | 'h6' | 'body' | 'caption';
 
 export type TypographyProps = {
   color: string;
@@ -41,43 +31,43 @@ export type TypographyWeightProps = {
 export const TYPOGRAPHY: Typography = {
   h1: {
     color: Colors.black,
-    fontSize: "36px",
-    lineHeight: "42px",
+    fontSize: '36px',
+    lineHeight: '42px',
   },
   h2: {
     color: Colors.black,
-    fontSize: "30px",
-    lineHeight: "36px",
+    fontSize: '30px',
+    lineHeight: '36px',
   },
   h3: {
     color: Colors.black,
-    fontSize: "24px",
-    lineHeight: "28px",
+    fontSize: '24px',
+    lineHeight: '28px',
   },
   h4: {
     color: Colors.black,
-    fontSize: "22px",
-    lineHeight: "26px",
+    fontSize: '22px',
+    lineHeight: '26px',
   },
   h5: {
     color: Colors.black,
-    fontSize: "20px",
-    lineHeight: "24px",
+    fontSize: '20px',
+    lineHeight: '24px',
   },
   h6: {
     color: Colors.black,
-    fontSize: "18px",
-    lineHeight: "22px",
+    fontSize: '18px',
+    lineHeight: '22px',
   },
   body: {
     color: Colors.body,
-    fontSize: "16px",
-    lineHeight: "22px",
+    fontSize: '16px',
+    lineHeight: '22px',
   },
   caption: {
     color: Colors.black,
-    fontSize: "14px",
-    lineHeight: "18px",
+    fontSize: '14px',
+    lineHeight: '18px',
   },
 };
 

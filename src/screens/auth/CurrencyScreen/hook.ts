@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 
-import client from "~/apollo/client";
-import { MUTATION_ACCOUNT_CREATE } from "~/apollo/mutation/account";
-import useCurrentUser from "~/hooks/useCurrentUser";
-import { reset } from "~/navigation/root/utils";
-
-import { SCREENS } from "~/types";
+import client from '~/apollo/client';
+import { MUTATION_ACCOUNT_CREATE } from '~/apollo/mutation/account';
+import useCurrentUser from '~/hooks/useCurrentUser';
+import { reset } from '~/navigation/root/utils';
+import { SCREENS } from '~/types';
 
 const pickerData = [
-  { label: "EUR", value: "EUR" },
-  { label: "USD", value: "USD" },
-  { label: "YEN", value: "YEN" },
+  { label: 'EUR', value: 'EUR' },
+  { label: 'USD', value: 'USD' },
+  { label: 'YEN', value: 'YEN' },
 ];
 
 const useHook = () => {
   const [currency, setCurrency] = useState(pickerData[1].value);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const { currentUser } = useCurrentUser();
   const [accountCreate, { loading }] = useMutation(MUTATION_ACCOUNT_CREATE);
@@ -28,7 +27,7 @@ const useHook = () => {
         variables: {
           data: { currency },
         },
-      }).then((response) => response.data.accountCreate);
+      }).then(response => response.data.accountCreate);
 
       client.updateLocalStateCurrentUser({
         ...currentUser,
@@ -36,9 +35,9 @@ const useHook = () => {
       });
       reset(SCREENS.Dashboard);
     } catch (e) {
-      setError("Something went wrong");
+      setError('Something went wrong');
       setTimeout(() => {
-        setError("");
+        setError('');
       }, 3000);
     }
   };

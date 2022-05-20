@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-import { Colors } from "~/themes";
+import { Colors } from '~/themes';
 
 export const Account = styled.View`
   width: 135px;

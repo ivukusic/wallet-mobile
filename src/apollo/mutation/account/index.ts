@@ -1,1 +1,1 @@
-export * from "./accountCreate";
+export * from './accountCreate';

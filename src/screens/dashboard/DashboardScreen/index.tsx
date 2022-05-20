@@ -1,13 +1,13 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 
-import { Screen } from "~/components/Screen";
-import { TouchableOpacity } from "~/components/TouchableOpacity";
-import { Colors } from "~/themes";
+import { Screen } from '~/components/Screen';
+import { TouchableOpacity } from '~/components/TouchableOpacity';
+import { Colors } from '~/themes';
 
-import AccountHeader from "./components/AccountHeader";
-import TransactionList from "./components/TransactionList";
-import useHook from "./hook";
-import { SendButton } from "./styles";
+import AccountHeader from './components/AccountHeader';
+import TransactionList from './components/TransactionList';
+import useHook from './hook';
+import { SendButton } from './styles';
 
 const DashboardScreen = () => {
   const { handleLogout, handleSend } = useHook();
@@ -19,10 +19,7 @@ const DashboardScreen = () => {
   );
 
   return (
-    <Screen
-      header={{ headerTitle: "Wallet", headerRightButton: renderRightButton() }}
-      p="0px"
-    >
+    <Screen header={{ headerTitle: 'Wallet', headerRightButton: renderRightButton() }} p="0px">
       <AccountHeader />
       <TransactionList />
 

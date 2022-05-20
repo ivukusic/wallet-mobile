@@ -1,9 +1,9 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-import { Colors } from "~/themes";
+import { Colors } from '~/themes';
 
-import { CustomText } from "../CustomText";
-import { TouchableOpacity } from "../TouchableOpacity";
+import { CustomText } from '../CustomText';
+import { TouchableOpacity } from '../TouchableOpacity';
 
 const style: {
   [key: string]: {
@@ -36,8 +36,8 @@ export const Field = styled.View`
 `;
 
 export const Label = styled(CustomText).attrs({
-  type: "caption",
-  fontWeight: "semiBold",
+  type: 'caption',
+  fontWeight: 'semiBold',
 })<{ state: string }>`
   text-align: left;
   position: absolute;
@@ -67,7 +67,7 @@ export const Element = styled.TextInput<{
   border-color: ${({ state }) => style[state]?.borderColor};
   padding: 10px;
   width: 100%;
-  height: ${({ textarea }) => (textarea ? "140px" : "52px")};
+  height: ${({ textarea }) => (textarea ? '140px' : '52px')};
   background-color: #fbfbfb;
 `;
 

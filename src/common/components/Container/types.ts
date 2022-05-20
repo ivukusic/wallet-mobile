@@ -4,7 +4,7 @@ import {
   LayoutProps,
   PaddingProps,
   SpaceProps,
-} from "styled-system";
+} from 'styled-system';
 
 export interface ContainerProps
   extends SpaceProps,

@@ -1,9 +1,9 @@
-import { IAccountType } from "./account";
+import { IAccountType } from './account';
 
 export enum IGenderType {
-  MALE = "MALE",
-  FEMALE = "FEMALE",
-  OTHER = "OTHER",
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
 }
 
 export interface IUserType {

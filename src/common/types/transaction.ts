@@ -1,5 +1,5 @@
-import { ICurrencyType } from "./account";
-import { IUserType } from "./user";
+import { ICurrencyType } from './account';
+import { IUserType } from './user';
 
 export interface ITransactionType {
   id: string;

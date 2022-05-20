@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-import { TouchableOpacity } from "~/components/TouchableOpacity";
-import { Colors } from "~/themes";
+import { TouchableOpacity } from '~/components/TouchableOpacity';
+import { Colors } from '~/themes';
 
 export const SendButton = styled(TouchableOpacity)`
   position: absolute;

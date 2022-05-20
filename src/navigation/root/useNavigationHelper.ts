@@ -1,19 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { useQuery } from "@apollo/client";
+import { useQuery } from '@apollo/client';
 
-import { STORAGE } from "~/constants/storage";
-import { SCREENS } from "~/types";
+import { STORAGE } from '~/constants/storage';
+import { SCREENS } from '~/types';
 
-import { storage } from "../../common/utils/storage";
-import { QUERY_CURRENT_USER } from "../../apollo/query";
+import { QUERY_CURRENT_USER } from '../../apollo/query';
+import { storage } from '../../common/utils/storage';
 
 export const useNavigationHelper = (): {
-  initialRouteName:
-    | SCREENS.Login
-    | SCREENS.Currency
-    | SCREENS.Dashboard
-    | undefined;
+  initialRouteName: SCREENS.Login | SCREENS.Currency | SCREENS.Dashboard | undefined;
 } => {
   const [initialRouteName, setInitialRouteName] = useState<
     SCREENS.Login | SCREENS.Currency | SCREENS.Dashboard | undefined

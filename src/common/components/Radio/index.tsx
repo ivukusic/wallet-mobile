@@ -1,17 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { Container } from "../Container";
-import { CustomText } from "../CustomText";
-import { useHook } from "./hook";
-import { Option } from "./styles";
-import { OptionItem, Props } from "./types";
+import { Container } from '../Container';
+import { CustomText } from '../CustomText';
+import { useHook } from './hook';
+import { Option } from './styles';
+import { OptionItem, Props } from './types';
 
-export const Radio: React.FC<Props> = ({
-  containerProps,
-  data,
-  onChange,
-  value,
-}): JSX.Element => {
+export const Radio: React.FC<Props> = ({ containerProps, data, onChange, value }): JSX.Element => {
   const { handleChange } = useHook({ onChange });
 
   const renderOption = (item: OptionItem, index: number) => (

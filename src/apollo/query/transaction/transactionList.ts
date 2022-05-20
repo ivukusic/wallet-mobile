@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
-import { FRAGMENT_TRANSACTION, FRAGMENT_USER } from "../../fragments";
+import { FRAGMENT_TRANSACTION } from '../../fragments';
 
 export const QUERY_TRANSACTION_LIST = gql`
   ${FRAGMENT_TRANSACTION}

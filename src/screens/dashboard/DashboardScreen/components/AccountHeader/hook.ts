@@ -1,4 +1,4 @@
-import useCurrentUser from "~/hooks/useCurrentUser";
+import useCurrentUser from '~/hooks/useCurrentUser';
 
 const useHook = () => {
   const { currentUser } = useCurrentUser();

@@ -1,6 +1,6 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { SCREENS } from "./screen";
+import { SCREENS } from './screen';
 
 export type RootStackParamList = {
   [SCREENS.Login]: undefined;
@@ -9,5 +9,4 @@ export type RootStackParamList = {
   [SCREENS.Send]: undefined;
 };
 
-export type RouterNavigationProp =
-  NativeStackNavigationProp<RootStackParamList>;
+export type RouterNavigationProp = NativeStackNavigationProp<RootStackParamList>;

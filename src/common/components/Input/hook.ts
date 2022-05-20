@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { IAnyType } from "~/types";
+import { useMemo, useState } from 'react';
+
+import { IAnyType } from '~/types';
 
 export const useHook = ({ error, onFocus }: IAnyType) => {
   const [focused, setFocused] = useState(false);
@@ -17,12 +18,12 @@ export const useHook = ({ error, onFocus }: IAnyType) => {
   ---------------------------------------------------------------------------------------------------------------- */
   const state = useMemo(() => {
     if (error) {
-      return "error";
+      return 'error';
     }
     if (focused) {
-      return "focused";
+      return 'focused';
     }
-    return "default";
+    return 'default';
   }, [error, focused]);
 
   /* ----------------------------------------------------------------------------------------------------------------

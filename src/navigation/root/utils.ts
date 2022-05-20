@@ -1,17 +1,15 @@
-import {
-  CommonActions,
-  createNavigationContainerRef,
-} from "@react-navigation/native";
+import { CommonActions, createNavigationContainerRef } from '@react-navigation/native';
 
-import { RootStackParamList } from "~/types";
+import { RootStackParamList } from '~/types';
 
 export const navigationRef = createNavigationContainerRef();
 
 export const goTo = <T extends keyof RootStackParamList>(
   path: T,
-  params?: RootStackParamList[T]
+  params?: RootStackParamList[T],
 ) => {
   if (path) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     return navigationRef?.current?.navigate(path, params);
   }
@@ -27,7 +25,7 @@ export const reset = <T extends keyof RootStackParamList>(path: T) => {
       CommonActions.reset({
         index: 0,
         routes: [{ name: path }],
-      })
+      }),
     );
   }
 };

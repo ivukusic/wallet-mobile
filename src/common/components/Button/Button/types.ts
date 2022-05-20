@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   BackgroundColorProps,
@@ -7,8 +7,9 @@ import {
   HeightProps,
   LayoutProps,
   SpaceProps,
-} from "styled-system";
-import { CustomTextProps } from "~/components/CustomText/types";
+} from 'styled-system';
+
+import { CustomTextProps } from '~/components/CustomText/types';
 
 interface ContainerProps
   extends BackgroundColorProps,
@@ -24,7 +25,7 @@ export interface Props {
   containerProps?: ContainerProps;
   icon?: string;
   renderIcon?: () => React.ReactNode;
-  type?: "default" | "primary" | "list" | "delete";
+  type?: 'default' | 'primary' | 'list' | 'delete';
   disabled?: boolean;
   onPress: () => void;
   labelProps?: CustomTextProps;

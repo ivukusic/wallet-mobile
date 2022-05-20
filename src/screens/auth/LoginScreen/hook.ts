@@ -1,37 +1,32 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useMutation } from "@apollo/client";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { useMutation } from '@apollo/client';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-import { MUTATION_AUTH_SIGNUP } from "../../../apollo/mutation";
-import client from "../../../apollo/client";
+import { goTo, reset } from '~/navigation/root/utils';
+import { IAnyType, SCREENS } from '~/types';
 
-import { ILoginFormType } from "./types";
-import { IAnyType, SCREENS } from "~/types";
-import { goTo, reset } from "~/navigation/root/utils";
+import client from '../../../apollo/client';
+import { MUTATION_AUTH_SIGNUP } from '../../../apollo/mutation';
+import { ILoginFormType } from './types';
 
 const initialValues: ILoginFormType = {
-  email: "",
-  firstName: "",
-  lastName: "",
-  phone: "",
+  email: '',
+  firstName: '',
+  lastName: '',
+  phone: '',
 };
 
 const useHook = () => {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const [signup, { loading }] = useMutation(MUTATION_AUTH_SIGNUP);
 
   /*********************************************************************************************************************
    * METHODS
    ********************************************************************************************************************/
-  const handleRegistration = async ({
-    email,
-    firstName,
-    lastName,
-    phone,
-  }: ILoginFormType) => {
+  const handleRegistration = async ({ email, firstName, lastName, phone }: ILoginFormType) => {
     try {
       const res = await signup({
         variables: {
@@ -42,7 +37,7 @@ const useHook = () => {
             phone,
           },
         },
-      }).then((response) => response.data.authSignup);
+      }).then(response => response.data.authSignup);
 
       await client.setToken(res.accessToken);
       await client.updateLocalStateCurrentUser(res.user);
@@ -53,9 +48,9 @@ const useHook = () => {
         goTo(SCREENS.Currency);
       }
     } catch (e) {
-      setError("Something went wrong");
+      setError('Something went wrong');
       setTimeout(() => {
-        setError("");
+        setError('');
       }, 3000);
     }
   };
@@ -64,9 +59,9 @@ const useHook = () => {
    * DATA
    ********************************************************************************************************************/
   const loginSchema = Yup.object().shape({
-    email: Yup.string().email("Wrong email format").required("Required field"),
-    firstName: Yup.string().required("Required field"),
-    lastName: Yup.string().required("Required field"),
+    email: Yup.string().email('Wrong email format').required('Required field'),
+    firstName: Yup.string().required('Required field'),
+    lastName: Yup.string().required('Required field'),
   });
 
   const formik = useFormik({
@@ -83,7 +78,7 @@ const useHook = () => {
 
     const onChange = (v: IAnyType): void => {
       let value = v;
-      if (["email", "phone"].includes(field)) {
+      if (['email', 'phone'].includes(field)) {
         value = v.trim();
       }
       formik.handleChange(field)({ target: { value } } as IAnyType);

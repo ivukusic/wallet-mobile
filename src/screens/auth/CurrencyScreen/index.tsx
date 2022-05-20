@@ -1,9 +1,9 @@
-import { Button } from "~/components/Button";
-import { CustomText } from "~/components/CustomText";
-import { Picker } from "~/components/Picker";
-import { Screen } from "~/components/Screen";
+import { Button } from '~/components/Button';
+import { CustomText } from '~/components/CustomText';
+import { Picker } from '~/components/Picker';
+import { Screen } from '~/components/Screen';
 
-import useHook from "./hook";
+import useHook from './hook';
 
 const CurrencyScreen = () => {
   const { currency, handleChange, handleSave, loading, pickerData } = useHook();
@@ -17,12 +17,7 @@ const CurrencyScreen = () => {
 
       <Picker data={pickerData} onChange={handleChange} value={currency} />
 
-      <Button
-        label="Save"
-        loading={loading}
-        onPress={handleSave}
-        type="primary"
-      />
+      <Button label="Save" loading={loading} onPress={handleSave} type="primary" />
     </Screen>
   );
 };

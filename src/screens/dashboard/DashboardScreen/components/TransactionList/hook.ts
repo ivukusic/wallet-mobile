@@ -1,18 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from 'react';
 
-import { useQuery } from "@apollo/client";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useQuery } from '@apollo/client';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { QUERY_TRANSACTION_LIST } from "~/apollo/query";
-import useCurrentUser from "~/hooks/useCurrentUser";
-import {
-  IPaginatedType,
-  ITransactionType,
-  RouterNavigationProp,
-} from "~/types";
+import { QUERY_TRANSACTION_LIST } from '~/apollo/query';
+import useCurrentUser from '~/hooks/useCurrentUser';
+import useRefetchMe from '~/hooks/useRefetchMe';
+import { IAnyType, IPaginatedType, ITransactionType, RouterNavigationProp } from '~/types';
 
-import { ScreenRouteProp } from "./types";
-import useRefetchMe from "~/hooks/useRefetchMe";
+import { ScreenRouteProp } from './types';
 
 const LIMIT = 2;
 
@@ -25,26 +21,29 @@ const useHook = () => {
 
   const { reset } = route.params || {};
 
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState('All');
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [transactionData, setTransactionData] = useState<
     IPaginatedType<ITransactionType> | undefined
   >(undefined);
 
-  const variables = useMemo(() => {
+  const variables: IAnyType = useMemo(() => {
     const pagination = {
       limit: LIMIT,
       offset: 0,
     };
-    if (filter === "Sent") {
+    if (!currentUser.id) {
+      return { pagination };
+    }
+    if (filter === 'Sent') {
       return {
-        pagination: pagination,
+        pagination,
         where: {
           or: [{ sender: { id: currentUser.id } }],
         },
       };
     }
-    if (filter === "Received") {
+    if (filter === 'Received') {
       return {
         pagination: pagination,
         where: {
@@ -55,25 +54,18 @@ const useHook = () => {
     return {
       pagination: pagination,
       where: {
-        or: [
-          { receiver: { id: currentUser.id } },
-          { sender: { id: currentUser.id } },
-        ],
+        or: [{ receiver: { id: currentUser.id } }, { sender: { id: currentUser.id } }],
       },
     };
-  }, [filter, transactionData]);
+  }, [currentUser.id, filter]);
 
-  const onCompleted = (data: {
-    transactionList: IPaginatedType<ITransactionType>;
-  }) => {
-    setTransactionData(
-      (prevState: IPaginatedType<ITransactionType> | undefined) => {
-        return {
-          count: data.transactionList.count,
-          data: [...(prevState?.data || []), ...data.transactionList.data],
-        };
-      }
-    );
+  const onCompleted = (data: { transactionList: IPaginatedType<ITransactionType> }) => {
+    setTransactionData((prevState: IPaginatedType<ITransactionType> | undefined) => {
+      return {
+        count: data.transactionList.count,
+        data: [...(prevState?.data || []), ...data.transactionList.data],
+      };
+    });
   };
 
   const { refetch } = useQuery(QUERY_TRANSACTION_LIST, {
@@ -88,6 +80,7 @@ const useHook = () => {
       refetch(variables);
       refetchMe();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reset]);
 
   const transactions = useMemo(() => {
@@ -103,7 +96,7 @@ const useHook = () => {
         ...variables.pagination,
         offset: transactions.length,
       },
-      where: { ...variables.where },
+      where: { ...(variables.where || {}) },
     });
   };
 
@@ -113,7 +106,7 @@ const useHook = () => {
   };
 
   const handleShowFilter = () => {
-    setShowFilter((prevState) => !prevState);
+    setShowFilter(prevState => !prevState);
   };
 
   return {

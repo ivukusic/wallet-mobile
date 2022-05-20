@@ -1,6 +1,6 @@
-import { Text } from "react-native";
+import { Text } from 'react-native';
 
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 import {
   space,
   layout,
@@ -11,28 +11,19 @@ import {
   textAlign,
   flexbox,
   size,
-} from "styled-system";
-import { Colors } from "~/themes";
+} from 'styled-system';
 
-import { CustomTextStyle } from "./types";
+import { Colors } from '~/themes';
+
+import { CustomTextStyle } from './types';
 
 export const Container = styled(Text)<CustomTextStyle>`
-  text-decoration: ${({ underline }): string =>
-    underline ? "underline" : "none"};
+  text-decoration: ${({ underline }): string => (underline ? 'underline' : 'none')};
   text-align-vertical: center;
-  ${compose(
-    space,
-    layout,
-    fontSize,
-    lineHeight,
-    color,
-    textAlign,
-    flexbox,
-    size
-  )}
+  ${compose(space, layout, fontSize, lineHeight, color, textAlign, flexbox, size)}
 `;
 
 Container.defaultProps = {
   color: Colors.body,
-  type: "body",
+  type: 'body',
 };

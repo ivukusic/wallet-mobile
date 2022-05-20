@@ -1,16 +1,16 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from 'react';
 
-import LoginScreen from "~/screens/auth/LoginScreen";
-import CurrencyScreen from "~/screens/auth/CurrencyScreen";
-import DashboardScreen from "~/screens/dashboard/DashboardScreen";
-import SendScreen from "~/screens/dashboard/SendScreen";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RootStackParamList, SCREENS } from "../../common/types";
-import { navigationRef } from "./utils";
-import { useNavigationHelper } from "./useNavigationHelper";
-import { Colors } from "~/themes";
+import CurrencyScreen from '~/screens/auth/CurrencyScreen';
+import LoginScreen from '~/screens/auth/LoginScreen';
+import DashboardScreen from '~/screens/dashboard/DashboardScreen';
+import SendScreen from '~/screens/dashboard/SendScreen';
+
+import { RootStackParamList, SCREENS } from '../../common/types';
+import { useNavigationHelper } from './useNavigationHelper';
+import { navigationRef } from './utils';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,7 +24,7 @@ const RootNavigator = () => {
     <Stack.Navigator
       initialRouteName={initialRouteName}
       screenOptions={{
-        headerTitleAlign: "center",
+        headerTitleAlign: 'center',
         headerBackTitleVisible: false,
       }}
     >
@@ -45,7 +45,7 @@ const RootNavigator = () => {
         <Stack.Screen name={SCREENS.Dashboard} component={DashboardScreen} />
       </Stack.Group>
 
-      <Stack.Group screenOptions={{ headerShown: true, presentation: "modal" }}>
+      <Stack.Group screenOptions={{ headerShown: true, presentation: 'modal' }}>
         <Stack.Screen name={SCREENS.Send} component={SendScreen} />
       </Stack.Group>
     </Stack.Navigator>

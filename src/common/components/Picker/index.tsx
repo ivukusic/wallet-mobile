@@ -1,17 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { Picker as PickerNative } from "@react-native-picker/picker";
+import { Picker as PickerNative } from '@react-native-picker/picker';
 
-import { Container } from "../Container";
-import { PickerItem, Props } from "./types";
-import { useHook } from "./hook";
+import { Container } from '../Container';
+import { useHook } from './hook';
+import { PickerItem, Props } from './types';
 
-export const Picker: React.FC<Props> = ({
-  containerProps = {},
-  data,
-  onChange,
-  value,
-}) => {
+export const Picker: React.FC<Props> = ({ containerProps = {}, data, onChange, value }) => {
   const { handleChange } = useHook({ onChange });
 
   const renderItem = (item: PickerItem) => (

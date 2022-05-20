@@ -1,9 +1,9 @@
-import { Animated } from "react-native";
+import { Animated } from 'react-native';
 
-import styled from "styled-components/native";
-import { TouchableOpacity } from "~/components/TouchableOpacity";
+import styled from 'styled-components/native';
 
-import { Colors } from "~/themes";
+import { TouchableOpacity } from '~/components/TouchableOpacity';
+import { Colors } from '~/themes';
 
 export const FlatContainer = styled(Animated.View)`
   position: absolute;
@@ -27,7 +27,6 @@ export const FlatList = styled(Animated.FlatList).attrs({
 export const FilterButton = styled(TouchableOpacity)<{ selected: boolean }>`
   padding: 10px 20px;
   margin-right: 5px;
-  background-color: ${({ selected }) =>
-    selected ? Colors.primary : Colors.borderLight};
+  background-color: ${({ selected }) => (selected ? Colors.primary : Colors.borderLight)};
   border-radius: 20px;
 `;

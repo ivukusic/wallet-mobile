@@ -1,14 +1,27 @@
-import React, { forwardRef, ReactNode, useLayoutEffect } from "react";
-import { StatusBar } from "react-native";
+import React, { forwardRef, ReactNode, useLayoutEffect } from 'react';
+import { StatusBar } from 'react-native';
 
-import { useNavigation } from "@react-navigation/native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { KeyboardAwareScroll, Scroll, ViewContainer } from "./styles";
-import { BackButtonProps, Props } from "./types";
-import { IAnyType } from "~/types";
-import { Colors } from "~/themes";
-import { BackButton } from "../Button";
+import { navigationRef } from '~/navigation/root/utils';
+import { Colors } from '~/themes';
+import { IAnyType } from '~/types';
+
+import { BackButton } from '../Button';
+import { KeyboardAwareScroll, Scroll, ViewContainer } from './styles';
+import { BackButtonProps, Props } from './types';
+
+const renderHeaderBack =
+  (dark = false) =>
+  ({ canGoBack, onPress }: BackButtonProps) =>
+    canGoBack && (
+      <BackButton
+        canGoBack={canGoBack}
+        dark={dark}
+        onPress={onPress || navigationRef.current?.goBack}
+      />
+    );
 
 export const Screen: IAnyType = forwardRef<IAnyType, Props>(
   (
@@ -17,70 +30,47 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
       enableOnAndroid = true,
       enableResetScrollToCoords = false,
       extraScrollHeight = 100,
-      keyboardShouldPersistTaps = "handled",
-      header = { headerMode: "default" },
-      mode = "view",
+      keyboardShouldPersistTaps = 'handled',
+      header = { headerMode: 'default' },
+      mode = 'view',
       ...rest
     },
-    ref
+    ref,
   ) => {
     const navigation = useNavigation();
     const insets = useSafeAreaInsets();
 
     useLayoutEffect(() => {
-      if (header.headerMode === "white") {
+      if (header.headerMode === 'white') {
         navigation.setOptions({
           headerStyle: {
             backgroundColor: Colors.white,
-            borderBottomColor: "transparent",
+            borderBottomColor: 'transparent',
           },
-          headerTitle: "",
-          headerLeft: ({ canGoBack, onPress }: BackButtonProps) =>
-            canGoBack && (
-              <BackButton
-                canGoBack={canGoBack}
-                dark
-                onPress={onPress || navigation.goBack}
-              />
-            ),
+          headerTitle: '',
+          headerLeft: renderHeaderBack(true),
         });
-      } else if (header.headerMode === "modal") {
+      } else if (header.headerMode === 'modal') {
         navigation.setOptions({
           headerStyle: {
             backgroundColor: Colors.white,
-            borderBottomColor: "transparent",
+            borderBottomColor: 'transparent',
           },
           headerTitleStyle: { color: Colors.header },
-          headerTitle: header.headerTitle || "",
-          headerRight: ({ canGoBack, onPress }: BackButtonProps) =>
-            canGoBack && (
-              <BackButton
-                canGoBack={canGoBack}
-                close
-                dark
-                onPress={onPress || navigation.goBack}
-              />
-            ),
+          headerTitle: header.headerTitle || '',
+          headerLeft: renderHeaderBack(true),
         });
       } else {
         navigation.setOptions({
-          headerTitle: header.headerTitle || "",
-          headerLeft: ({ canGoBack, onPress }: BackButtonProps) =>
-            canGoBack && (
-              <BackButton
-                canGoBack={canGoBack}
-                onPress={onPress || navigation.goBack}
-              />
-            ),
-          headerRight: header.headerRightButton
-            ? () => header.headerRightButton
-            : undefined,
+          headerTitle: header.headerTitle || '',
+          headerLeft: renderHeaderBack(false),
+          headerRight: header.headerRightButton ? () => header.headerRightButton : undefined,
         });
       }
     }, [header, navigation]);
 
     const renderContent = (): ReactNode => {
-      if (mode === "scroll") {
+      if (mode === 'scroll') {
         return (
           <Scroll
             ref={ref}
@@ -93,7 +83,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
           </Scroll>
         );
       }
-      if (mode === "keyboard-aware") {
+      if (mode === 'keyboard-aware') {
         return (
           <KeyboardAwareScroll
             ref={ref}
@@ -123,7 +113,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
     };
 
     const statusBarColor = Colors.header;
-    const statusBarStyle = "light-content";
+    const statusBarStyle = 'light-content';
     return (
       <>
         <StatusBar
@@ -135,5 +125,5 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
         {renderContent()}
       </>
     );
-  }
+  },
 );

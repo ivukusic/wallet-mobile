@@ -1,8 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { ICurrencyType } from "~/types";
+import { useEffect, useState } from 'react';
 
-const BASE_URL_HNB = "https://api.hnb.hr/tecajn/v2";
+import axios from 'axios';
+
+import { ICurrencyType } from '~/types';
+
+const BASE_URL_HNB = 'https://api.hnb.hr/tecajn/v2';
 
 interface IExchangeType {
   [ICurrencyType.EUR]: number;
@@ -27,12 +29,12 @@ export const useExchangeRate = () => {
             srednji_tecaj: string;
             jedinica: string;
             valuta: string;
-          }
+          },
         ) => {
           const rate =
-            parseFloat(currentValue.srednji_tecaj.replace(",", ".")) /
-            parseInt(currentValue.jedinica);
-          if (currentValue.valuta === "JPY") {
+            parseFloat(currentValue.srednji_tecaj.replace(',', '.')) /
+            parseInt(currentValue.jedinica, 10);
+          if (currentValue.valuta === 'JPY') {
             return { ...previousValue, [ICurrencyType.YEN]: rate };
           }
           if (currentValue.valuta === ICurrencyType.EUR) {
@@ -47,7 +49,7 @@ export const useExchangeRate = () => {
           [ICurrencyType.EUR]: 0,
           [ICurrencyType.USD]: 0,
           [ICurrencyType.YEN]: 0,
-        }
+        },
       );
       setList(rates);
     } catch (e) {}
@@ -57,17 +59,14 @@ export const useExchangeRate = () => {
     fetchData();
   }, []);
 
-  const calculateExchangeRate = (
-    initialCurrency: ICurrencyType,
-    endCurrency: ICurrencyType
-  ) => {
+  const calculateExchangeRate = (initialCurrency: ICurrencyType, endCurrency: ICurrencyType) => {
     return list[initialCurrency] / list[endCurrency];
   };
 
   const calculateAmount = (
     amount: string,
     initialCurrency: ICurrencyType,
-    endCurrency: ICurrencyType
+    endCurrency: ICurrencyType,
   ): number => {
     const exchangeRate = calculateExchangeRate(initialCurrency, endCurrency);
     return parseFloat(amount) * exchangeRate;

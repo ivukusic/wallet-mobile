@@ -1,20 +1,14 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  ApolloLink,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
+import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 
-import { STORAGE } from "~/constants/storage";
-import { log } from "~/utils/console";
-import { storage } from "~/utils/storage";
-import { IAnyType, IUserType } from "~/types";
+import { STORAGE } from '~/constants/storage';
+import { IAnyType, IUserType } from '~/types';
+import { log } from '~/utils/console';
+import { storage } from '~/utils/storage';
 
-import { MUTATION_UPDATE_CURRENT_USER } from "./mutation";
-import { QUERY_CURRENT_USER } from "./query";
-import { URLS } from "./config";
-import { normalizeReadFieldOptions } from "@apollo/client/cache/inmemory/policies";
+import { URLS } from './config';
+import { MUTATION_UPDATE_CURRENT_USER } from './mutation';
+import { QUERY_CURRENT_USER } from './query';
 
 export const INITIAL_STATE_USER = {
   currentUser: {
@@ -71,7 +65,7 @@ class ApolloWrapper {
 
   updateLocalStateCurrentUser = async (
     currentUser: Partial<IUserType>,
-    updateStorage = true
+    updateStorage = true,
   ): Promise<void> => {
     if (updateStorage) {
       await storage.set.item(STORAGE.CURRENT_USER, JSON.stringify(currentUser));
@@ -92,10 +86,7 @@ class ApolloWrapper {
       query: QUERY_CURRENT_USER,
       data: { currentUser: INITIAL_STATE_USER.currentUser },
     });
-    storage.set.item(
-      STORAGE.CURRENT_USER,
-      JSON.stringify(INITIAL_STATE_USER.currentUser)
-    ); // put initial config in storage
+    storage.set.item(STORAGE.CURRENT_USER, JSON.stringify(INITIAL_STATE_USER.currentUser)); // put initial config in storage
   };
 
   async initialize(): Promise<void> {
@@ -122,28 +113,26 @@ class ApolloWrapper {
                 `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
                   locations,
                   null,
-                  2
-                )}, Path: ${path}`
-              )
+                  2,
+                )}, Path: ${path}`,
+              ),
             );
           }
           if (networkError) {
-            log(
-              `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
-            );
+            log(`[Network error]: ${networkError}. Backend is unreachable. Is it running?`);
           }
         }),
         // this uses apollo-link-http under the hood, so all the options here come from that package
         authLink.concat(httpLink),
       ]),
-      credentials: "same-origin",
+      credentials: 'same-origin',
       cache: localCache,
       resolvers: {
         Mutation: {
           updateCurrentUser: async (
             _: IAnyType,
             { currentUser }: IAnyType,
-            { cache }: IAnyType
+            { cache }: IAnyType,
           ): Promise<null> => {
             const data = cache.readQuery({ query: QUERY_CURRENT_USER });
             let newData = { ...(data?.currentUser || {}), ...currentUser };
@@ -154,10 +143,7 @@ class ApolloWrapper {
               query: QUERY_CURRENT_USER,
               data: { currentUser: newData },
             });
-            await storage.set.item(
-              STORAGE.CURRENT_USER,
-              JSON.stringify(newData)
-            );
+            await storage.set.item(STORAGE.CURRENT_USER, JSON.stringify(newData));
             return null; //best practices
           },
         },

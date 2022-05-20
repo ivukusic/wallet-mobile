@@ -1,4 +1,4 @@
-import { ICurrencyType } from "~/types";
+import { ICurrencyType } from '~/types';
 
 export interface ITransferFormType {
   amount: string;

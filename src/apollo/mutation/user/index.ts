@@ -1,2 +1,2 @@
-export * from "./authSignup";
-export * from "./local";
+export * from './authSignup';
+export * from './local';

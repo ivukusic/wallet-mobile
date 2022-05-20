@@ -1,1 +1,1 @@
-declare module "react-native-ico-flags";
+declare module 'react-native-ico-flags';

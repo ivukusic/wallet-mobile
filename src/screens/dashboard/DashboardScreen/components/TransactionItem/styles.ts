@@ -1,10 +1,10 @@
-import { Dimensions } from "react-native";
+import { Dimensions } from 'react-native';
 
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-import { Colors } from "~/themes";
+import { Colors } from '~/themes';
 
-const { height } = Dimensions.get("screen");
+const { height } = Dimensions.get('screen');
 
 export const FlatList = styled.FlatList.attrs({
   contentContainerStyle: {

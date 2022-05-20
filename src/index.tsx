@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { ApolloProvider } from "@apollo/client";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ApolloProvider } from '@apollo/client';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import ApolloWrapper from "./apollo/client";
-import { Navigation } from "./navigation/root";
+import ApolloWrapper from './apollo/client';
+import { Navigation } from './navigation/root';
 
 const App: React.FC = () => {
   const [ready, setReady] = useState(false);

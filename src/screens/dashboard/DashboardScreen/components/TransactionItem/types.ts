@@ -1,4 +1,4 @@
-import { ITransactionType } from "~/types/transaction";
+import { ITransactionType } from '~/types/transaction';
 
 export interface Props {
   transaction: ITransactionType;

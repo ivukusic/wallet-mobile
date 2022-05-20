@@ -1,10 +1,6 @@
-import { RouteProp } from "@react-navigation/native";
-import {
-  IAnyType,
-  RootStackParamList,
-  RouterNavigationProp,
-  SCREENS,
-} from "~/types";
+import { RouteProp } from '@react-navigation/native';
+
+import { IAnyType, RootStackParamList, RouterNavigationProp, SCREENS } from '~/types';
 
 type ScreenRouteProp = RouteProp<RootStackParamList, SCREENS.Login>;
 

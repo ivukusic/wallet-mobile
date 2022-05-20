@@ -1,47 +1,38 @@
-import React from "react";
+import React from 'react';
 
-import { Entypo } from "@expo/vector-icons";
+import { Entypo } from '@expo/vector-icons';
 
-import { useHook } from "./hook";
-import {
-  Element,
-  ErrorMessage,
-  Field,
-  Label,
-  ElementWrapper,
-  ToggleShowPassword,
-} from "./styles";
-import { InputProps } from "./types";
+import { useHook } from './hook';
+import { Element, ErrorMessage, Field, Label, ElementWrapper, ToggleShowPassword } from './styles';
+import { InputProps } from './types';
 
 export const Input: React.FC<InputProps> = ({
   label,
   type,
   value,
   placeholder,
-  error = "",
+  error = '',
   onChangeText,
   onFocus,
   required,
   textarea = false,
   keyboardType,
 }) => {
-  const { toggleFocused, state, passwordVisible, toggleShowPassword } = useHook(
-    { error, onFocus }
-  );
+  const { toggleFocused, state, passwordVisible, toggleShowPassword } = useHook({ error, onFocus });
 
   /* ----------------------------------------------------------------------------------------------------------------
     RENDER
   ---------------------------------------------------------------------------------------------------------------- */
   return (
     <Field>
-      <Label state={state}>{`${label}${required ? "*" : ""}`}</Label>
+      <Label state={state}>{`${label}${required ? '*' : ''}`}</Label>
       <ElementWrapper state={state}>
         {/* Input element */}
 
         <Element
           value={value}
-          placeholder={`${placeholder}${required ? "*" : ""}`}
-          secureTextEntry={type === "password" && !passwordVisible}
+          placeholder={`${placeholder}${required ? '*' : ''}`}
+          secureTextEntry={type === 'password' && !passwordVisible}
           autoCapitalize="none"
           onChangeText={onChangeText}
           onFocus={toggleFocused(true)}
@@ -50,12 +41,12 @@ export const Input: React.FC<InputProps> = ({
           error={error}
           textarea={textarea}
           multiline={textarea}
-          textAlignVertical={textarea ? "top" : "center"}
+          textAlignVertical={textarea ? 'top' : 'center'}
           keyboardType={keyboardType}
         />
 
         {/* Show password icon */}
-        {type === "password" && (
+        {type === 'password' && (
           <ToggleShowPassword onPress={toggleShowPassword}>
             {passwordVisible ? (
               <Entypo name="eye-with-line" size={23} color="#838383" />

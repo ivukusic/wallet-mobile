@@ -1,12 +1,12 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button } from "~/components/Button";
-import { Container } from "~/components/Container";
-import { CustomText } from "~/components/CustomText";
-import { Input } from "~/components/Input";
-import { Screen } from "~/components/Screen";
+import { Button } from '~/components/Button';
+import { Container } from '~/components/Container';
+import { CustomText } from '~/components/CustomText';
+import { Input } from '~/components/Input';
+import { Screen } from '~/components/Screen';
 
-import useHook from "./hook";
+import useHook from './hook';
 
 const LoginScreen = () => {
   const { top } = useSafeAreaInsets();
@@ -23,29 +23,14 @@ const LoginScreen = () => {
         label="First name"
         placeholder="Enter first name"
         required
-        {...fieldProps("firstName")}
+        {...fieldProps('firstName')}
       />
-      <Input
-        label="Last name"
-        placeholder="Enter last name"
-        required
-        {...fieldProps("lastName")}
-      />
+      <Input label="Last name" placeholder="Enter last name" required {...fieldProps('lastName')} />
 
-      <Input
-        label="Email"
-        placeholder="Enter email address"
-        required
-        {...fieldProps("email")}
-      />
+      <Input label="Email" placeholder="Enter email address" required {...fieldProps('email')} />
 
       <Container mt="30px" width="100%">
-        <Button
-          label="Login"
-          loading={loading}
-          onPress={formik.submitForm}
-          type="primary"
-        />
+        <Button label="Login" loading={loading} onPress={formik.submitForm} type="primary" />
       </Container>
 
       {!!error && <CustomText mb="100px">{error}</CustomText>}

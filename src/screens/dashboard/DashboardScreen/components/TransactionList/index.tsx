@@ -1,31 +1,24 @@
-import { Ionicons } from "@expo/vector-icons";
-import { useRef } from "react";
-import { Animated } from "react-native";
-import { Button } from "~/components/Button";
+import { useRef } from 'react';
+import { Animated } from 'react-native';
 
-import { Container } from "~/components/Container";
-import { CustomText } from "~/components/CustomText";
-import { TouchableOpacity } from "~/components/TouchableOpacity";
-import { Colors } from "~/themes";
-import { IAnyType, ITransactionType } from "~/types";
+import { Ionicons } from '@expo/vector-icons';
 
-import TransactionItem from "../TransactionItem";
+import { Button } from '~/components/Button';
+import { Container } from '~/components/Container';
+import { CustomText } from '~/components/CustomText';
+import { TouchableOpacity } from '~/components/TouchableOpacity';
+import { Colors } from '~/themes';
+import { IAnyType, ITransactionType } from '~/types';
 
-import useHook from "./hook";
-import { FlatContainer, FlatList, FilterButton } from "./styles";
+import TransactionItem from '../TransactionItem';
+import useHook from './hook';
+import { FlatContainer, FlatList, FilterButton } from './styles';
 
-const filters = ["All", "Received", "Sent"];
+const filters = ['All', 'Received', 'Sent'];
 
 const TransactionList: React.FC = () => {
-  const {
-    count,
-    data,
-    filter,
-    handleFilterPress,
-    handleLoadMore,
-    handleShowFilter,
-    showFilter,
-  } = useHook();
+  const { count, data, filter, handleFilterPress, handleLoadMore, handleShowFilter, showFilter } =
+    useHook();
   const translate = useRef(new Animated.Value(0)).current;
 
   const renderHeader = () => (
@@ -39,15 +32,9 @@ const TransactionList: React.FC = () => {
 
       {showFilter && (
         <Container flexDirection="row" pt="10px">
-          {filters.map((item) => (
-            <FilterButton
-              key={item}
-              onPress={handleFilterPress(item)}
-              selected={item === filter}
-            >
-              <CustomText color={item === filter ? Colors.white : Colors.body}>
-                {item}
-              </CustomText>
+          {filters.map(item => (
+            <FilterButton key={item} onPress={handleFilterPress(item)} selected={item === filter}>
+              <CustomText color={item === filter ? Colors.white : Colors.body}>{item}</CustomText>
             </FilterButton>
           ))}
         </Container>
@@ -90,7 +77,7 @@ const TransactionList: React.FC = () => {
               },
             },
           ],
-          { useNativeDriver: true }
+          { useNativeDriver: true },
         )}
         ListHeaderComponent={renderHeader()}
         ListFooterComponent={renderFooter()}

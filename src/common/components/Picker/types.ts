@@ -1,4 +1,4 @@
-import { ContainerProps } from "../Container/types";
+import { ContainerProps } from '../Container/types';
 
 export interface PickerItem {
   label: string;

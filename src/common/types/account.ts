@@ -1,7 +1,7 @@
 export enum ICurrencyType {
-  EUR = "EUR",
-  USD = "USD",
-  YEN = "YEN",
+  EUR = 'EUR',
+  USD = 'USD',
+  YEN = 'YEN',
 }
 
 export interface IAccountType {

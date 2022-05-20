@@ -1,7 +1,8 @@
-import { StyleSheet } from "react-native";
-import styled from "styled-components/native";
-import { Colors } from "~/themes";
-import { TouchableOpacity } from "../TouchableOpacity";
+import styled from 'styled-components/native';
+
+import { Colors } from '~/themes';
+
+import { TouchableOpacity } from '../TouchableOpacity';
 
 export const Option = styled(TouchableOpacity)<{
   first: boolean;
@@ -15,10 +16,9 @@ export const Option = styled(TouchableOpacity)<{
   justify-content: center;
   padding: 10px;
   border-width: 1px;
-  border-color: ${({ selected }) =>
-    selected ? Colors.primary : Colors.borderLight};
-  border-top-left-radius: ${({ first }) => (first ? "6px" : "0px")};
-  border-bottom-left-radius: ${({ first }) => (first ? "6px" : "0px")};
-  border-top-right-radius: ${({ last }) => (last ? "6px" : "0px")};
-  border-bottom-right-radius: ${({ last }) => (last ? "6px" : "0px")};
+  border-color: ${({ selected }) => (selected ? Colors.primary : Colors.borderLight)};
+  border-top-left-radius: ${({ first }) => (first ? '6px' : '0px')};
+  border-bottom-left-radius: ${({ first }) => (first ? '6px' : '0px')};
+  border-top-right-radius: ${({ last }) => (last ? '6px' : '0px')};
+  border-bottom-right-radius: ${({ last }) => (last ? '6px' : '0px')};
 `;
