@@ -83,6 +83,11 @@ const useHook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reset]);
 
+  useEffect(() => {
+    refetchMe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const transactions = useMemo(() => {
     if (transactionData?.data) {
       return transactionData?.data;
