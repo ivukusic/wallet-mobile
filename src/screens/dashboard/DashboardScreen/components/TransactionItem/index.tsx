@@ -69,7 +69,11 @@ const TransactionItem: React.FC<Props> = ({ transaction }) => {
         )}
       </Container>
 
-      {!!description && <CustomText>{description}</CustomText>}
+      {!!description && (
+        <CustomText fontSize="12px" lineHeight="16px" mt="5px">
+          {description}
+        </CustomText>
+      )}
     </Container>
   );
 };

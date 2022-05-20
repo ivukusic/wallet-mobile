@@ -5,6 +5,7 @@ export const FRAGMENT_TRANSACTION = gql`
     id
     amount
     currency
+    description
     exchangeRate
     createdAt
   }
