@@ -1,4 +1,5 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { Button } from "~/components/Button";
 import { Container } from "~/components/Container";
 import { CustomText } from "~/components/CustomText";

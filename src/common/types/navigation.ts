@@ -5,7 +5,8 @@ import { SCREENS } from "./screen";
 export type RootStackParamList = {
   [SCREENS.Login]: undefined;
   [SCREENS.Currency]: undefined;
-  [SCREENS.Dashboard]: undefined;
+  [SCREENS.Dashboard]: { reset?: boolean };
+  [SCREENS.Send]: undefined;
 };
 
 export type RouterNavigationProp =

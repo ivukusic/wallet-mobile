@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { AUTH_SIGNUP } from "../../../apollo/mutation";
+import { MUTATION_AUTH_SIGNUP } from "../../../apollo/mutation";
 import client from "../../../apollo/client";
 
 import { ILoginFormType } from "./types";
@@ -21,7 +21,7 @@ const initialValues: ILoginFormType = {
 const useHook = () => {
   const [error, setError] = useState("");
 
-  const [signup, { loading }] = useMutation(AUTH_SIGNUP);
+  const [signup, { loading }] = useMutation(MUTATION_AUTH_SIGNUP);
 
   /*********************************************************************************************************************
    * METHODS
@@ -44,8 +44,9 @@ const useHook = () => {
         },
       }).then((response) => response.data.authSignup);
 
-      client.setToken(res.accessToken);
-      client.updateLocalStateCurrentUser(res.user);
+      await client.setToken(res.accessToken);
+      await client.updateLocalStateCurrentUser(res.user);
+
       if (res.user.accounts?.length) {
         reset(SCREENS.Dashboard);
       } else {
@@ -53,6 +54,9 @@ const useHook = () => {
       }
     } catch (e) {
       setError("Something went wrong");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 
@@ -77,7 +81,7 @@ const useHook = () => {
     const data: IAnyType = formik.getFieldProps(field);
     const { error: fieldError, touched } = formik.getFieldMeta(field);
 
-    data.onChangeText = (v: IAnyType): void => {
+    const onChange = (v: IAnyType): void => {
       let value = v;
       if (["email", "phone"].includes(field)) {
         value = v.trim();
@@ -87,6 +91,8 @@ const useHook = () => {
         formik.validateField(field);
       }
     };
+    data.onChange = onChange;
+    data.onChangeText = onChange;
 
     return { ...data, error: fieldError, touched };
   };

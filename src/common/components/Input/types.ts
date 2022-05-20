@@ -1,9 +1,10 @@
-import { IAnyType } from "~/types";
+import { KeyboardType } from "react-native";
 
 export interface InputProps {
   error?: string;
   label?: string;
-  onFocus?: IAnyType;
+  keyboardType: KeyboardType;
+  onFocus?: () => void;
   onChangeText: (value: string) => void;
   placeholder?: string;
   required?: boolean;

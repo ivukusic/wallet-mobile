@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import client from "~/apollo/client";
-import { ACCOUNT_CREATE } from "~/apollo/mutation/account";
+import { MUTATION_ACCOUNT_CREATE } from "~/apollo/mutation/account";
 import useCurrentUser from "~/hooks/useCurrentUser";
 import { reset } from "~/navigation/root/utils";
 
@@ -20,7 +20,7 @@ const useHook = () => {
   const [error, setError] = useState("");
 
   const { currentUser } = useCurrentUser();
-  const [accountCreate, { loading }] = useMutation(ACCOUNT_CREATE);
+  const [accountCreate, { loading }] = useMutation(MUTATION_ACCOUNT_CREATE);
 
   const handleSave = async () => {
     try {
@@ -37,6 +37,9 @@ const useHook = () => {
       reset(SCREENS.Dashboard);
     } catch (e) {
       setError("Something went wrong");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 

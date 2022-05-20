@@ -1,6 +1,8 @@
-import { reset } from "~/navigation/root/utils";
+import { useQuery } from "@apollo/client";
 
 import client from "~/apollo/client";
+import { QUERY_TRANSACTION_LIST } from "~/apollo/query";
+import { goTo, reset } from "~/navigation/root/utils";
 import { SCREENS } from "~/types";
 
 const useHook = () => {
@@ -9,7 +11,11 @@ const useHook = () => {
     reset(SCREENS.Login);
   };
 
-  return { handleLogout };
+  const handleSend = () => {
+    goTo(SCREENS.Send);
+  };
+
+  return { handleLogout, handleSend };
 };
 
 export default useHook;

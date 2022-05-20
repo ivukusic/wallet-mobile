@@ -23,6 +23,7 @@ export const Input: React.FC<InputProps> = ({
   onFocus,
   required,
   textarea = false,
+  keyboardType,
 }) => {
   const { toggleFocused, state, passwordVisible, toggleShowPassword } = useHook(
     { error, onFocus }
@@ -50,6 +51,7 @@ export const Input: React.FC<InputProps> = ({
           textarea={textarea}
           multiline={textarea}
           textAlignVertical={textarea ? "top" : "center"}
+          keyboardType={keyboardType}
         />
 
         {/* Show password icon */}

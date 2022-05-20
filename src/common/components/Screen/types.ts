@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
-import { FlexboxProps, LayoutProps, SpaceProps } from 'styled-system';
+import { FlexboxProps, LayoutProps, SpaceProps } from "styled-system";
 
 export interface HeaderProps {
   customHeaderTitle?: ReactNode | string;
   headerLeftButton?: ReactNode;
   headerLogo?: boolean;
-  headerMode?: 'modal' | 'white' | 'default';
+  headerMode?: "modal" | "white" | "default";
   headerBackTitle?: string;
   headerRightButton?: ReactNode;
   headerTintColor?: string;
@@ -17,14 +17,19 @@ export interface HeaderProps {
 export interface Props extends ContainerProps {
   ref?: ReactNode;
   bottomComponent?: React.ReactNode;
-  mode?: 'scroll' | 'keyboard-aware' | 'view';
+  mode?: "scroll" | "keyboard-aware" | "view";
   header?: HeaderProps;
   enableOnAndroid?: boolean;
   enableResetScrollToCoords?: boolean;
   extraScrollHeight?: number;
-  keyboardShouldPersistTaps?: 'handled' | 'always' | 'never';
+  keyboardShouldPersistTaps?: "handled" | "always" | "never";
 }
 
 interface ContainerProps extends SpaceProps, LayoutProps, FlexboxProps {
   backgroundColor?: string;
+}
+
+export interface BackButtonProps {
+  canGoBack: boolean;
+  onPress: () => void;
 }

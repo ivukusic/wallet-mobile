@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { KeyboardAwareScroll, Scroll, ViewContainer } from "./styles";
-import { Props } from "./types";
+import { BackButtonProps, Props } from "./types";
 import { IAnyType } from "~/types";
 import { Colors } from "~/themes";
 import { BackButton } from "../Button";
@@ -35,7 +35,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
             borderBottomColor: "transparent",
           },
           headerTitle: "",
-          headerLeft: ({ canGoBack, onPress }: IAnyType) =>
+          headerLeft: ({ canGoBack, onPress }: BackButtonProps) =>
             canGoBack && (
               <BackButton
                 canGoBack={canGoBack}
@@ -52,7 +52,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
           },
           headerTitleStyle: { color: Colors.header },
           headerTitle: header.headerTitle || "",
-          headerRight: ({ canGoBack, onPress }: IAnyType) =>
+          headerRight: ({ canGoBack, onPress }: BackButtonProps) =>
             canGoBack && (
               <BackButton
                 canGoBack={canGoBack}
@@ -65,7 +65,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
       } else {
         navigation.setOptions({
           headerTitle: header.headerTitle || "",
-          headerLeft: ({ canGoBack, onPress }: IAnyType) =>
+          headerLeft: ({ canGoBack, onPress }: BackButtonProps) =>
             canGoBack && (
               <BackButton
                 canGoBack={canGoBack}
@@ -86,6 +86,7 @@ export const Screen: IAnyType = forwardRef<IAnyType, Props>(
             ref={ref}
             paddingBottom={rest.paddingBottom || insets.bottom}
             backgroundColor="white"
+            keyboardShouldPersistTaps={keyboardShouldPersistTaps}
             {...rest}
           >
             {children}

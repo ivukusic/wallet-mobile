@@ -10,6 +10,7 @@ const colors = {
   gray: "#9F9F9F",
   yellow: "#F9A825",
   blue: "#134ac5",
+  green: "#48A14D",
 
   // Text colors
   title: "121828",

@@ -1,14 +1,16 @@
 import { Feather } from "@expo/vector-icons";
 
-import { CustomText } from "~/components/CustomText";
 import { Screen } from "~/components/Screen";
 import { TouchableOpacity } from "~/components/TouchableOpacity";
 import { Colors } from "~/themes";
 
+import AccountHeader from "./components/AccountHeader";
+import TransactionList from "./components/TransactionList";
 import useHook from "./hook";
+import { SendButton } from "./styles";
 
 const DashboardScreen = () => {
-  const { handleLogout } = useHook();
+  const { handleLogout, handleSend } = useHook();
 
   const renderRightButton = () => (
     <TouchableOpacity onPress={handleLogout}>
@@ -18,11 +20,15 @@ const DashboardScreen = () => {
 
   return (
     <Screen
-      alignItems="center"
-      justifyContent="center"
       header={{ headerTitle: "Wallet", headerRightButton: renderRightButton() }}
+      p="0px"
     >
-      <CustomText mb="40px">Dashboard</CustomText>
+      <AccountHeader />
+      <TransactionList />
+
+      <SendButton onPress={handleSend}>
+        <Feather name="send" color={Colors.white} size={30} />
+      </SendButton>
     </Screen>
   );
 };

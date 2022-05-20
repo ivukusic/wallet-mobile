@@ -1,12 +1,17 @@
 import styled from "styled-components/native";
 
 import { Colors } from "~/themes";
-import { IAnyType } from "~/types";
 
 import { CustomText } from "../CustomText";
 import { TouchableOpacity } from "../TouchableOpacity";
 
-const style: IAnyType = {
+const style: {
+  [key: string]: {
+    borderColor: string;
+    wrapperBorderColor: string;
+    color: string;
+  };
+} = {
   default: {
     borderColor: Colors.border,
     wrapperBorderColor: `transparent`,

@@ -14,6 +14,7 @@ import { IAnyType, IUserType } from "~/types";
 import { MUTATION_UPDATE_CURRENT_USER } from "./mutation";
 import { QUERY_CURRENT_USER } from "./query";
 import { URLS } from "./config";
+import { normalizeReadFieldOptions } from "@apollo/client/cache/inmemory/policies";
 
 export const INITIAL_STATE_USER = {
   currentUser: {
@@ -65,7 +66,7 @@ class ApolloWrapper {
 
   logout = async () => {
     await storage.delete.multiple([STORAGE.CURRENT_USER, STORAGE.TOKEN]);
-    this.updateLocalStateCurrentUser(INITIAL_STATE_USER.currentUser);
+    await this.resetLocalStateCurrentUser();
   };
 
   updateLocalStateCurrentUser = async (
@@ -84,7 +85,7 @@ class ApolloWrapper {
   resetLocalStateCurrentUser = async (): Promise<void> => {
     await storage.delete.allKeys(); // clear all storage
     if (this.client?.cache?.resetStore) {
-      await this.client?.cache?.resetStore(); // clear cache in memory
+      await this.client?.cache?.clearStore(); // clear cache in memory
     }
     this.client.cache.writeQuery({
       // update query in cache

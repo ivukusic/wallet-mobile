@@ -38,7 +38,7 @@ export const Button: React.FC<Props> = ({
     )}
 
     <LoadingPlaceholder />
-    <Label type={type} {...labelProps}>
+    <Label customType={type} {...(labelProps || {})}>
       {label}
     </Label>
     <LoadingPlaceholder>

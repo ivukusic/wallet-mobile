@@ -15,10 +15,16 @@ import {
 import { CustomText } from "~/components/CustomText";
 import { TouchableOpacity } from "~/components/TouchableOpacity";
 import { Colors } from "~/themes";
-import { IAnyType } from "~/types";
-import { TypeScale } from "~/components/CustomText/types";
+import { CustomTextProps } from "~/components/CustomText/types";
 
-const style: IAnyType = {
+const style: {
+  [key: string]: {
+    borderColor: string;
+    borderWidth: string;
+    color: string;
+    indicatorColor?: string;
+  };
+} = {
   default: {
     borderColor: Colors.border,
     borderWidth: "1px",
@@ -26,25 +32,17 @@ const style: IAnyType = {
   },
   primary: {
     borderColor: "transparent",
-    borderWidth: 0,
+    borderWidth: "0px",
     color: Colors.white,
-  },
-  list: {
-    borderColor: "transparent",
-    borderWidth: 0,
-    color: Colors.black,
-    Wrapper: {
-      "justify-content": "flex-start",
-    },
   },
   delete: {
     borderColor: "transparent",
-    borderWidth: 0,
+    borderWidth: "0px",
     color: Colors.white,
   },
 };
 
-export const Wrapper = styled(TouchableOpacity)<{ type: IAnyType }>`
+export const Wrapper = styled(TouchableOpacity)<{ type: string }>`
   overflow: hidden;
   flex-direction: row;
   justify-content: center;
@@ -58,7 +56,6 @@ export const Wrapper = styled(TouchableOpacity)<{ type: IAnyType }>`
   pointer-events: ${({ disabled }) => (disabled ? "none" : "all")};
   border-radius: 8px;
   ${compose(backgroundColor, border, height, layout, flexbox, space)};
-  ${({ type }) => style[type].Wrapper};
 `;
 
 export const Background = styled(LinearGradient).attrs(
@@ -89,9 +86,11 @@ export const BackgroundDelete = styled(LinearGradient).attrs(
   left: 0;
 `;
 
-export const Label = styled(CustomText)<{ type: IAnyType }>`
+export const Label = styled(CustomText)<
+  CustomTextProps & { customType: string }
+>`
   font-size: 16px;
-  color: ${({ color, type }) => color || style[type].color};
+  color: ${({ customType }) => style[customType].color};
 `;
 
 export const LoadingPlaceholder = styled.View`
