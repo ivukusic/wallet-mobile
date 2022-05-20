@@ -15,6 +15,12 @@ const flags = {
   [ICurrencyType.YEN]: 'japan',
 };
 
+const currencies = {
+  [ICurrencyType.USD]: 'US Dollar',
+  [ICurrencyType.EUR]: 'EU Euro',
+  [ICurrencyType.YEN]: 'JA YEN',
+};
+
 const AccountHeader = () => {
   const { accounts } = useHook();
 
@@ -26,7 +32,7 @@ const AccountHeader = () => {
           {item.balance.toString().includes('.') ? amountToFix(item.balance) : item.balance}{' '}
           {item.currency}
         </CustomText>
-        <CustomText type="caption">US Dollar</CustomText>
+        <CustomText type="caption">{currencies[item.currency]}</CustomText>
       </Container>
     </Account>
   );
